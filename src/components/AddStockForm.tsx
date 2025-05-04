@@ -88,6 +88,7 @@ return (
             <label>株数: </label>
             {/* type="number" にすると入力が楽になるかも */}
             <input type="number" value={quantityInput} onChange={handleInputChange(setQuantityInput, 'quantity')} required min="1"/>
+            {errors.quantity && <p style={{ color: 'red', margin:'0', fontSize: 'o.9em' }}>{errors.quantity}</p>}
         </div>
         <div>
             <label>取得単価 (円): </label>
