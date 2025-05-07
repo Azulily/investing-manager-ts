@@ -1,7 +1,13 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
-export default defineConfig({
+export default defineConfig({ // Vite の設定と Vitest の設定をマージ
   plugins: [react()],
-})
+  // Vitest の設定を直接記述
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.ts', // setupTests.ts のパスを確認
+  },
+});

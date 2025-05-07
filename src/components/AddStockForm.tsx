@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { StockHolding } from "../types/portfolio";
+import { FormErrors } from "../types/forms";
 import React from "react";
-
-interface FormErrors {
-    ticker?: string;
-    name?: string;
-    quantity?: string;
-    price?: string;
-}
 
 interface AddStockFormProps {
     onAddStock: (newHoldingData: Omit<StockHolding, 'id'>) => void;
@@ -75,24 +69,24 @@ return (
     <form onSubmit={handleSubmit}>
         <h2 style={{ marginTop: '30px'}}>新しい株を追加</h2>
         <div>
-            <label>銘柄コード: </label>
-            <input type="text" value={tickerInput} onChange={handleInputChange(setTickerInput, 'ticker')} required/>
+            <label htmlFor="add-ticker">銘柄コード: </label>
+            <input id="add-ticker" type="text" value={tickerInput} onChange={handleInputChange(setTickerInput, 'ticker')} required/>
             {errors.ticker && <p style={{ color: 'red', margin: '0', fontSize: '0.9em' }}>{errors.ticker}</p>}
         </div>
         <div>
-            <label>銘柄名: </label>
-            <input type="text" value={nameInput} onChange={handleInputChange(setNameInput, 'name')} required/>
+            <label htmlFor="add-name">銘柄名: </label>
+            <input id="add-name" type="text" value={nameInput} onChange={handleInputChange(setNameInput, 'name')} required/>
             {errors.name && <p style={{ color: 'red', margin: '0', fontSize: '0.9em' }}>{errors.name}</p>}
         </div>
         <div>
-            <label>株数: </label>
+            <label htmlFor="add-quantity">株数: </label>
             {/* type="number" にすると入力が楽になるかも */}
-            <input type="number" value={quantityInput} onChange={handleInputChange(setQuantityInput, 'quantity')} required min="1"/>
-            {errors.quantity && <p style={{ color: 'red', margin:'0', fontSize: 'o.9em' }}>{errors.quantity}</p>}
+            <input id="add-quantity" type="number" value={quantityInput} onChange={handleInputChange(setQuantityInput, 'quantity')} required min="1"/>
+            {errors.quantity && <p style={{ color: 'red', margin:'0', fontSize: '0.9em' }}>{errors.quantity}</p>}
         </div>
         <div>
-            <label>取得単価 (円): </label>
-            <input type="number" value={priceInput} onChange={handleInputChange(setPriceInput, 'price')} required min="1"/>
+            <label htmlFor="add-price">取得単価 (円): </label>
+            <input id="add-price" type="number" value={priceInput} onChange={handleInputChange(setPriceInput, 'price')} required min="1"/>
             {errors.price && <p style={{ color: 'red', margin: '0', fontSize: '0.9em' }}>{errors.price}</p>}
         </div>
         <button type="submit">追加する</button>
