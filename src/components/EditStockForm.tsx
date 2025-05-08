@@ -30,6 +30,8 @@ function EditStockForm({ stockToEdit, onUpdateStock, onCancelEdit }: EditStockFo
         }
         if (!name.trim()) {
             currentErrors.name = '銘柄名を入力してください。';
+        }else if (name.length >= 20) {
+            currentErrors.name = '銘柄名は20文字以内で入力してください。';
         }
         if (isNaN(quantityNum) || quantityNum <= 0) {
             currentErrors.quantity = '有効な株数を入力してください';
@@ -61,25 +63,25 @@ function EditStockForm({ stockToEdit, onUpdateStock, onCancelEdit }: EditStockFo
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} noValidate>
             <h2>株を編集</h2>
             <div>
-                <label htmlFor="edit-ticker">銘柄コード</label>
+                <label htmlFor="edit-ticker">銘柄コード: </label>
                 <input id="edit-ticker" type="text" value={ticker} onChange={handleInputChange(setTicker, 'ticker')} required />
                 {errors.ticker && <p style={{ color: 'red', margin: '0', fontSize: '0.9em' }}>{errors.ticker}</p>}
             </div>
             <div>
-                <label htmlFor="edit-name">銘柄名</label>
+                <label htmlFor="edit-name">銘柄名: </label>
                 <input id="edit-name" type="text" value={name} onChange={handleInputChange(setName, 'name')} required />
                 {errors.name && <p style={{ color: 'red', margin: '0', fontSize: '0.9em' }}>{errors.name}</p>}
             </div>
             <div>
-                <label htmlFor="edit-quantity">株数</label>
-                <input id="edit-quantity" type="number" value={quantity} onChange={handleInputChange(setQuantity, 'quantity')} required />
+                <label htmlFor="edit-quantity">株数: </label>
+                <input id="edit-quantity" type="number" value={quantity} onChange={handleInputChange(setQuantity, 'quantity')} required/>
                 {errors.quantity && <p style={{ color: 'red', margin: '0', fontSize: '0.9em' }}>{errors.quantity}</p>}
             </div>
             <div>
-                <label htmlFor="edit-price">取得単価</label>
+                <label htmlFor="edit-price">取得単価: </label>
                 <input id="edit-price" type="number" value={price} onChange={handleInputChange(setPrice, 'price')} required />
                 {errors.price && <p style={{ color: 'red', margin: '0', fontSize: '0.9em' }}>{errors.price}</p>}
             </div>
