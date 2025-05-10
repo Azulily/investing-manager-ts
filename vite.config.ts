@@ -10,4 +10,7 @@ export default defineConfig({ // Vite の設定と Vitest の設定をマージ
     environment: 'jsdom',
     setupFiles: './src/setupTests.ts', // setupTests.ts のパスを確認
   },
+  esbuild: {
+    jsxImportSource: '@emotion/react', // Emotion の JSX トランスパイラを指定
+  }
 });
