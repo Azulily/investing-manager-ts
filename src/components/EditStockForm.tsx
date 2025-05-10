@@ -2,6 +2,13 @@ import { useState } from "react";
 import { StockHolding } from "../types/portfolio";
 import { FormErrors } from "../types/forms";
 import React from "react";
+import styled from "@emotion/styled"
+
+const ErrorMessage = styled.p`
+    color: red;
+    margin: 0;
+    font-size: 0.9em;
+`;
 
 
 interface EditStockFormProps {
@@ -18,12 +25,6 @@ function EditStockForm({ stockToEdit, onUpdateStock, onCancelEdit }: EditStockFo
 
     const [errors, setErrors] = useState<FormErrors>({});
 
-    // エラーメッセージ用の共通スタイルを定義
-    const errorMessageStyle = {
-        color: 'red',
-        margin: '0',
-        fontsize: '0.9em',
-    };
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const currentErrors: FormErrors = {};
@@ -82,7 +83,7 @@ function EditStockForm({ stockToEdit, onUpdateStock, onCancelEdit }: EditStockFo
                     aria-invalid={errors.ticker ? 'true' : 'false'}
                     aria-describedby="ticker-error"
                 />
-                {errors.ticker && <p id="ticker-error" css={errorMessageStyle}>{errors.ticker}</p>}
+                {errors.ticker && <ErrorMessage id="ticker-error" >{errors.ticker}</ErrorMessage>}
             </div>
             <div>
                 <label htmlFor="edit-name">銘柄名: </label>
@@ -94,7 +95,7 @@ function EditStockForm({ stockToEdit, onUpdateStock, onCancelEdit }: EditStockFo
                 aria-invalid={errors.name ? 'true' : 'false'}
                 aria-describedby="name-error"
                 />
-                {errors.name && <p id="name-error" css={errorMessageStyle}>{errors.name}</p>}
+                {errors.name && <ErrorMessage id="name-error" >{errors.name}</ErrorMessage>}
             </div>
             <div>
                 <label htmlFor="edit-quantity">株数: </label>
@@ -105,7 +106,7 @@ function EditStockForm({ stockToEdit, onUpdateStock, onCancelEdit }: EditStockFo
                 aria-invalid={errors.quantity ? 'true' : 'false'}
                 aria-describedby="quantity-error"
                 />
-                {errors.quantity && <p id="quantity-error" css={errorMessageStyle}>{errors.quantity}</p>}
+                {errors.quantity && <ErrorMessage id="quantity-error" >{errors.quantity}</ErrorMessage>}
             </div>
             <div>
                 <label htmlFor="edit-price">取得単価: </label>
@@ -117,7 +118,7 @@ function EditStockForm({ stockToEdit, onUpdateStock, onCancelEdit }: EditStockFo
                 aria-invalid={errors.price ? 'true' : 'false'}
                 aria-describedby="price-error"
                 />
-                {errors.price && <p id="price-error" css={errorMessageStyle}>{errors.price}</p>}
+                {errors.price && <ErrorMessage id="price-error" >{errors.price}</ErrorMessage>}
             </div>
             <button type="submit">更新する</button>
             <button type="button" onClick={onCancelEdit}>キャンセル</button>
