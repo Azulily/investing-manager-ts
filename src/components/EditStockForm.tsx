@@ -74,8 +74,9 @@ function EditStockForm({ stockToEdit, onUpdateStock, onCancelEdit }: EditStockFo
                     onChange={handleInputChange(setTicker, 'ticker')}
                     required
                     aria-invalid={errors.ticker ? 'true' : 'false'}
+                    aria-describedby="ticker-error"
                 />
-                {errors.ticker && <p style={{ color: 'red', margin: '0', fontSize: '0.9em' }}>{errors.ticker}</p>}
+                {errors.ticker && <p id="ticker-error" style={{ color: 'red', margin: '0', fontSize: '0.9em' }}>{errors.ticker}</p>}
             </div>
             <div>
                 <label htmlFor="edit-name">銘柄名: </label>
@@ -85,8 +86,9 @@ function EditStockForm({ stockToEdit, onUpdateStock, onCancelEdit }: EditStockFo
                 onChange={handleInputChange(setName, 'name')} 
                 required
                 aria-invalid={errors.name ? 'true' : 'false'}
+                aria-describedby="name-error"
                 />
-                {errors.name && <p style={{ color: 'red', margin: '0', fontSize: '0.9em' }}>{errors.name}</p>}
+                {errors.name && <p id="name-error" style={{ color: 'red', margin: '0', fontSize: '0.9em' }}>{errors.name}</p>}
             </div>
             <div>
                 <label htmlFor="edit-quantity">株数: </label>
@@ -95,8 +97,9 @@ function EditStockForm({ stockToEdit, onUpdateStock, onCancelEdit }: EditStockFo
                 onChange={handleInputChange(setQuantity, 'quantity')} 
                 required
                 aria-invalid={errors.quantity ? 'true' : 'false'}
+                aria-describedby="quantity-error"
                 />
-                {errors.quantity && <p style={{ color: 'red', margin: '0', fontSize: '0.9em' }}>{errors.quantity}</p>}
+                {errors.quantity && <p id="quantity-error" style={{ color: 'red', margin: '0', fontSize: '0.9em' }}>{errors.quantity}</p>}
             </div>
             <div>
                 <label htmlFor="edit-price">取得単価: </label>
@@ -106,8 +109,9 @@ function EditStockForm({ stockToEdit, onUpdateStock, onCancelEdit }: EditStockFo
                 onChange={handleInputChange(setPrice, 'price')} 
                 required
                 aria-invalid={errors.price ? 'true' : 'false'}
+                aria-describedby="price-error"
                 />
-                {errors.price && <p style={{ color: 'red', margin: '0', fontSize: '0.9em' }}>{errors.price}</p>}
+                {errors.price && <p id="price-error" style={{ color: 'red', margin: '0', fontSize: '0.9em' }}>{errors.price}</p>}
             </div>
             <button type="submit">更新する</button>
             <button type="button" onClick={onCancelEdit}>キャンセル</button>
